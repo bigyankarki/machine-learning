@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 from PIL import Image
 import io
 from ann import run_ann
@@ -12,6 +13,7 @@ window.resizable(width=False, height=False)
 
 # Drawing inside the canvas.
 lastx, lasty = 0, 0
+predicted_digit, confidence = "hi", 0
 
 def xy(event):
     global lastx, lasty
@@ -36,8 +38,9 @@ def btn_submit():
     print("Image Saved.")
     print("Running ANN.py")
 
-    predicted_digit, confidence = run_ann()
-    print(predicted_digit, confidence)
+    # global predicted_digit, confidence
+    # predicted_digit, confidence = run_ann()
+    # print(predicted_digit, confidence)
 
 
 # Left frame and it's widgets.
@@ -70,8 +73,9 @@ label3.grid(row=1, columnspan=2)
 
 text1 = tk.Text(right_frame, height=12, width=20, state='disabled')
 text1.grid(row=3, column=1)
+text1.insert(END, "Hi**********************************")
 
-label4 = tk.Label(right_frame, text="Confidence: ")
+label4 = tk.Label(right_frame, text="Confidence: " + str(confidence))
 label4.grid(row=4, columnspan=2)
 
 window.mainloop()

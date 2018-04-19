@@ -5,6 +5,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.datasets import fetch_mldata
 from recognize import resize_image
+from sklearn.model_selection import cross_val_predict
 
 
 def run_ann():
@@ -31,6 +32,9 @@ def run_ann():
     # let's evaluate MLPClassifier using cross-val_score using k-fold cross-validation
     print("Finding Confidence.")
     conf = np.average(cross_val_score(clf, x_train, y_train, cv=3, scoring="accuracy"))
+
+    print("Looking at the cocnfusion Matrix.")
+
 
     print("Returning prediction and confidence.")
     return [predicted_digit, conf]
