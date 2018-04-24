@@ -45,8 +45,6 @@ saver = tf.train.Saver()
 
 # ------------------------EXECUTION PHASE--------------------------
 
-n_epochs = 20
-batch_size = 50
 
 def return_prediction():
     with tf.Session() as sess:
@@ -55,8 +53,17 @@ def return_prediction():
         z = logits.eval(feed_dict={x: x_new_scaled})
         y_pred = np.argmax(z, axis=1)
 
-    print("Digit predicted is", y_pred)
+    print("Digit predicted is", y_pred[0])
     return y_pred
+
+    # with tf.Session() as sess:
+    #     saver.restore(sess, "./checkpoints/my_model_final.ckpt") # or better, use save_path
+    #     x_new_scaled = mnist.test.images[:20]
+    #     Z = logits.eval(feed_dict={x: x_new_scaled})
+    #     y_pred = np.argmax(Z, axis=1)
+    #
+    # print("Predicted classes:", y_pred)
+    # print("Actual classes:   ", mnist.test.labels[:20])
 
 
 if __name__ == "__main__":

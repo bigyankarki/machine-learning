@@ -27,6 +27,7 @@ def addLine(event):
 # To clear the canvas after drawing by clicking clear button
 def btn_clear():
     canvas1.delete("all")
+    label4.configure(text="")
 
 # Save the image into .jpg extension to pass it to OpenCV
 def btn_submit():
@@ -37,6 +38,7 @@ def btn_submit():
 
     print("Image Saved............")
     print("Running prediction.....")
+    print()
 
     digit = return_prediction()[0]
     label4.configure(text=digit)
