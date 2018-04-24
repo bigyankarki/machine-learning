@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import *
 from PIL import Image
 import io
-from ann import run_ann
+# from ann import run_ann
+from predict_using_trained_model import return_prediction
 
 # Main Window settings.
 window = tk.Tk()
@@ -13,7 +14,6 @@ window.resizable(width=False, height=False)
 
 # Drawing inside the canvas.
 lastx, lasty = 0, 0
-predicted_digit, confidence = "hi", 0
 
 def xy(event):
     global lastx, lasty
@@ -21,7 +21,7 @@ def xy(event):
 
 def addLine(event):
     global lastx, lasty
-    canvas1.create_line((lastx, lasty, event.x, event.y), fill="black", width=5)
+    canvas1.create_line((lastx, lasty, event.x, event.y), fill="black", width=20)
     lastx, lasty = event.x, event.y
 
 # To clear the canvas after drawing by clicking clear button
@@ -35,12 +35,11 @@ def btn_submit():
     im = Image.open(io.BytesIO(ps.encode('utf-8')))
     im.save("image" + '.jpg')
 
-    print("Image Saved.")
-    print("Running ANN.py")
+    print("Image Saved............")
+    print("Running prediction.....")
 
-    # global predicted_digit, confidence
-    # predicted_digit, confidence = run_ann()
-    # print(predicted_digit, confidence)
+    digit = return_prediction()[0]
+    label4.configure(text=digit)
 
 
 # Left frame and it's widgets.
@@ -71,11 +70,10 @@ label2.grid(row=0, columnspan=2)
 label3 = tk.Label(right_frame, text="The digit is: ", pady=20)
 label3.grid(row=1, columnspan=2)
 
-text1 = tk.Text(right_frame, height=12, width=20, state='disabled')
-text1.grid(row=3, column=1)
-text1.insert(END, "Hi**********************************")
+label4 = tk.Label(right_frame, height=12, width=20)
+label4.grid(row=3, column=1)
 
-label4 = tk.Label(right_frame, text="Confidence: " + str(confidence))
-label4.grid(row=4, columnspan=2)
+# label4 = tk.Label(right_frame, text="Confidence: " + str(confidence))
+# label4.grid(row=4, columnspan=2)
 
 window.mainloop()
