@@ -7,10 +7,10 @@ from recognize import resize_image
 # ----------------------------- CONSTRUCTION PHASE ------------------
 
 # Defining parameters.
-n_inputs = 28*28 # MNIST
+n_inputs = 28*28  # MNIST
 n_hidden1 = 300
 n_hidden2 = 100
-n_outputs = 10 # 10 Classes of prediction
+n_outputs = 10  # 10 Classes of prediction
 
 # defining placeholder variables.
 x = tf.placeholder(tf.float32, shape=(None, n_inputs), name='x')
@@ -51,10 +51,14 @@ def return_prediction():
         saver.restore(sess, './checkpoints/my_model_final.ckpt')
         x_new_scaled = [resize_image()]
         z = logits.eval(feed_dict={x: x_new_scaled})
-        y_pred = np.argmax(z, axis=1)
+        y_pred = np.argmax(z, axis=1)[0]
 
-    print("Digit predicted is", y_pred[0])
-    return y_pred
+        y_conf = tf.nn.softmax(z, 1)
+        y_conf_list = [("%.3f" % i) for i in y_conf.eval(feed_dict={x: x_new_scaled})[0]]
+
+    print("Digit predicted is", y_pred)
+    print("Prediction confidence", y_conf_list[y_pred])
+    return y_pred, y_conf_list[y_pred]
 
     # with tf.Session() as sess:
     #     saver.restore(sess, "./checkpoints/my_model_final.ckpt") # or better, use save_path
