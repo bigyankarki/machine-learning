@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import *
 from PIL import Image
 import io
+
 # from ann import run_ann
 from predict_using_trained_model import return_prediction
 
@@ -21,7 +21,7 @@ def xy(event):
 
 def addLine(event):
     global lastx, lasty
-    canvas1.create_line((lastx, lasty, event.x, event.y), fill="black", width=20)
+    canvas1.create_oval((lastx, lasty, event.x, event.y), fill="black", width=30)
     lastx, lasty = event.x, event.y
 
 # To clear the canvas after drawing by clicking clear button
@@ -40,8 +40,11 @@ def btn_submit():
     print("Running prediction.....")
     print()
 
-    digit = return_prediction()[0]
+    digit, conf = return_prediction()
     label4.configure(text=digit)
+    label5.configure(text="Confidence: "+ conf)
+
+
 
 
 # Left frame and it's widgets.
@@ -75,7 +78,7 @@ label3.grid(row=1, columnspan=2)
 label4 = tk.Label(right_frame, height=12, width=20)
 label4.grid(row=3, column=1)
 
-# label4 = tk.Label(right_frame, text="Confidence: " + str(confidence))
-# label4.grid(row=4, columnspan=2)
+label5 = tk.Label(right_frame, text="Confidence: ")
+label5.grid(row=4, columnspan=2)
 
 window.mainloop()
