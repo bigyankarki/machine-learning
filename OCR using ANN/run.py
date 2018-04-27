@@ -21,13 +21,14 @@ def xy(event):
 
 def addLine(event):
     global lastx, lasty
-    canvas1.create_oval((lastx, lasty, event.x, event.y), fill="black", width=30)
+    canvas1.create_oval((lastx, lasty, event.x, event.y), fill="black", width=20)
     lastx, lasty = event.x, event.y
 
 # To clear the canvas after drawing by clicking clear button
 def btn_clear():
     canvas1.delete("all")
-    label4.configure(text="")
+    label4.configure(text=" ")
+    label5.configure(text="Confidence: ")
 
 # Save the image into .jpg extension to pass it to OpenCV
 def btn_submit():
@@ -41,10 +42,8 @@ def btn_submit():
     print()
 
     digit, conf = return_prediction()
-    label4.configure(text=digit)
-    label5.configure(text="Confidence: "+ conf)
-
-
+    label4.configure(text=digit, font=("Times", 30, "bold"))
+    label5.configure(text="Confidence: " + conf)
 
 
 # Left frame and it's widgets.
@@ -69,16 +68,16 @@ btnSubmit.grid(row=2, column=1, sticky='w')
 right_frame = tk.Frame(window, padx=30)
 right_frame.grid(row=0, column=1, sticky='n')
 
-label2 = tk.Label(right_frame, text="Prediction")
-label2.grid(row=0, columnspan=2)
+label2 = tk.Label(right_frame, text="Prediction", font=("Times", 20, "bold"))
+label2.grid(row=0, column=1, sticky='n')
 
-label3 = tk.Label(right_frame, text="The digit is: ", pady=20)
-label3.grid(row=1, columnspan=2)
+label3 = tk.Label(right_frame, text="The digit is: ")
+label3.grid(row=1, column=1, sticky='w', pady=20)
 
-label4 = tk.Label(right_frame, height=12, width=20)
-label4.grid(row=3, column=1)
+label4 = tk.Label(right_frame, text="")
+label4.grid(row=2, column=1)
 
 label5 = tk.Label(right_frame, text="Confidence: ")
-label5.grid(row=4, columnspan=2)
+label5.grid(row=3, column=1, sticky='w', pady=20)
 
 window.mainloop()

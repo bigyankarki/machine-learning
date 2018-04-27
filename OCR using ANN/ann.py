@@ -6,7 +6,7 @@ import matplotlib
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.datasets import fetch_mldata
-from recognize import resize_image
+from process_image import processed_image
 from sklearn.model_selection import cross_val_predict
 
 
@@ -29,7 +29,7 @@ def run_ann():
     print("Training Completed.")
     # prediction
     print("Predicting the digit.")
-    predicted_digit = clf.predict([resize_image()])
+    predicted_digit = clf.predict([processed_image()])
 
     # let's evaluate MLPClassifier using cross-val_score using k-fold cross-validation
     print("Finding Confidence.")
