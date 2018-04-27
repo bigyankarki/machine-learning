@@ -1,7 +1,7 @@
 # importing dependencies
 import tensorflow as tf
 import numpy as np
-from recognize import resize_image
+from process_image import processed_image
 
 
 # ----------------------------- CONSTRUCTION PHASE ------------------
@@ -49,7 +49,7 @@ saver = tf.train.Saver()
 def return_prediction():
     with tf.Session() as sess:
         saver.restore(sess, './checkpoints/my_model_final.ckpt')
-        x_new_scaled = [resize_image()]
+        x_new_scaled = [processed_image()]
         z = logits.eval(feed_dict={x: x_new_scaled})
         y_pred = np.argmax(z, axis=1)[0]
 
