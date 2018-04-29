@@ -1,6 +1,7 @@
 # importing dependencies
 import tensorflow as tf
 import numpy as np
+from datetime import datetime
 
 
 # ----------------------------- CONSTRUCTION PHASE ------------------
@@ -38,6 +39,18 @@ with tf.name_scope("eval"):
     correct = tf.nn.in_top_k(logits, y, 1)
     accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
 
+# -------------------VISUALIZATION --------------
+
+# Making dir for different log files.
+now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+root_logdir = "tf_logs"
+logdir = "{}/run-{}/".format(root_logdir, now)
+
+# writing summary to TensorBoard.
+# eval_summary = tf.summary.scalar("Cross Entropy", eval)
+file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
+
+
 # initializing all variables.
 init = tf.global_variables_initializer()
 saver = tf.train.Saver()
@@ -61,3 +74,5 @@ with tf.Session() as sess:
         print(epoch, "Train accuracy:", acc_train, "Test accuracy:", acc_test)
 
     save_path = saver.save(sess, "./checkpoints/my_model_final.ckpt")
+
+file_writer.close()
