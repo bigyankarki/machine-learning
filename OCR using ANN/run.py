@@ -7,7 +7,7 @@ from predict_using_trained_model import return_prediction
 
 # Main Window settings.
 window = tk.Tk()
-window.title("Optical Character Recognition")
+window.title("Character Recognition")
 window.geometry("640x480")
 window.resizable(width=False, height=False)
 

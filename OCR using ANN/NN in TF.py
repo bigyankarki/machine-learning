@@ -7,10 +7,10 @@ from datetime import datetime
 # ----------------------------- CONSTRUCTION PHASE ------------------
 
 # Defining parameters.
-n_inputs = 28*28 # MNIST
+n_inputs = 28*28  # MNIST
 n_hidden1 = 300
 n_hidden2 = 100
-n_outputs = 10 # 10 Classes of prediction
+n_outputs = 10  # 10 Classes of prediction
 
 # defining placeholder variables.
 x = tf.placeholder(tf.float32, shape=(None, n_inputs), name='x')

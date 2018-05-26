@@ -39,7 +39,7 @@ def processed_image():
     # now let's resize the image into 28x28.
     colsPadding = (int(np.math.ceil((28 - cols) / 2.0)), int(np.math.floor((28 - cols) / 2.0)))
     rowsPadding = (int(np.math.ceil((28-rows)/2.0)),int(np.math.floor((28-rows)/2.0)))
-    norm_image = np.lib.pad(norm_image,(rowsPadding,colsPadding),'constant')
+    norm_image = np.lib.pad(norm_image, (rowsPadding,colsPadding), 'constant')
     #
     # cv2.imshow('image', norm_image)
     # cv2.waitKey(0)

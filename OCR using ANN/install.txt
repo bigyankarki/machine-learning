@@ -1,0 +1,21 @@
+How to run this program:
+
+Requirements:
+1) python3 - visit www.python.org to get the installation files.
+	Make sure python3 is donwloaded as PATH.
+
+Instructions to run:
+1) Navigate to the folder where all necessary .py files are.
+2) Install all dependencies by writing following command.
+	for mac/linux: pip3 install requirements.txt
+	or
+	for windows: pip install requirements.txt
+3) after all the dependencies are installed run the following command.
+	for mac/linux: python3 run.py
+	or
+	for windows: python run.py
+
+4) Wait for few seconds as initialization takes few moment.
+
+--------------------------------------------------------------------
+To view the trained model, please view "NN in TF.py" file.
