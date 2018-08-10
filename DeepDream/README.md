@@ -1,0 +1,1 @@
+Implemented from DeepDream Tutorial from google on ImageNet dataset using Inception model. Link to the tutorial https://github.com/tensorflow/tensorflow/blob/r0.10/tensorflow/examples/tutorials/deepdream/deepdream.ipynb
